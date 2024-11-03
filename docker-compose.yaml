@@ -1,0 +1,36 @@
+version: '3.8'  # Version specification can be omitted if not needed
+
+services:
+  nginx:
+    build:
+      context: ./nginx  # Set the build context to the directory containing the Nginx Dockerfile
+      dockerfile: Dockerfile  # Specify the Dockerfile name 
+    image: local-nginx
+    ports:
+      - "80:80"  # Changed "eighty" to "80" for correct port format
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Fixed typo in path from "nginx.confi" to "nginx.conf"
+    networks:
+      - nginx-network
+
+  python-app:
+    build:
+      context: ./Python  # Set the build context to the directory containing the Python app Dockerfile
+      dockerfile: Dockerfile  # Specify the Dockerfile name 
+    image: local-python-app
+    container_name: python_app
+    expose:
+      - "8000"  # Changed "eight thousand" to "8000" for correct port format
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge
+
+
+
+
+#   python-app:
+#    
+#     
