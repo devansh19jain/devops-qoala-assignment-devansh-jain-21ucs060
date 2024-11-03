@@ -26,11 +26,4 @@ services:
 
 networks:
   nginx-network:
-    driver: bridge
-
-
-
-
-#   python-app:
-#    
-#     
+    driver: bridge   
